@@ -12,10 +12,17 @@
     {% include "nav.html" %}
 
     {% for pet in pet %}
+    {{pet | length/3}}
 
-    <h4>{{pet.petName}}</h4><br>
-    <a href="http://localhost:5000/petmedicine/{{pet.id}}">약 기록</a><br>
-    <a href="http://localhost:5000/petwalk/{{pet.id}}">산책 기록</a><br><br>
+    <div class="petData" style="float: left; margin-left: 3cm; margin-top: 2cm;" > 
+        <h4 style="margin-left: 2cm;">{{pet.petName}}</h4><br>
+        <a href="http://localhost:5000/petmedicine/{{pet.id}}" style="margin-left: 2cm;">약 기록</a>
+        <a href="http://localhost:5000/petwalk/{{pet.id}}" style="float: left;">산책 기록</a><br><br>
+        <!-- <h6>{{loop.index}}</h6> -->
+        {% for thing in pet.PetMedicines %}
+        <h6>{{thing}}</h6>
+        {% endfor %}
+    </div>
     {% endfor %}
 
 </body>

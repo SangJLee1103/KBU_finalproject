@@ -5,7 +5,7 @@ module.exports = class PetWalk extends Sequelize.Model {
     static init(sequelize) {
         return super.init({
             whetherToWork: {
-                type: Sequelize.BOOLEAN,
+                type: Sequelize.TINYINT,
                 allowNull: false,
             },
             walkDate: {
