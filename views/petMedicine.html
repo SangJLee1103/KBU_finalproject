@@ -9,7 +9,7 @@
 <body>
     {% include "nav.html" %}
 
-    <form action="/petmedicine/{{petId}}" name="checkDate" method="POST">
+    <form action="/petmedicine/{{petId}}" name="check" method="POST">
         <table boder=""  cellspacing="1">
             <tr>
                 <input type="date" id="date" name="setDate" min = {{min}} required/>

@@ -14,11 +14,7 @@ router.use(
 )
 
 router.route('/')
-<<<<<<< HEAD
-    .get(isLoggedIn,(req, res, next) => {
-        res.locals.isAuthenticated = isLoggedIn;
-=======
-    .get((req, res, next) => {
+    .get(isLoggedIn, (req, res, next) => {
         res.locals.user= req.user;
         var address = req.query.address; //html에서 주소값 불러오기 
         var result = "";
@@ -42,7 +38,7 @@ router.route('/')
 
                 locationJson = {locationX:X, locationY:Y}; //json로 변환 
             })
->>>>>>> 2389f51694f5538d406cdebdcaa0834c55e81a25
+        res.locals.isAuthenticated = isLoggedIn;
         res.locals.key = process.env.JS_KEY; //보안을 위해 키를 따로 불러옴 
         res.render('map', {key: process.env.JS_KEY}); //넌적스 출력 
     })

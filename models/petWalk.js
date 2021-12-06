@@ -4,12 +4,12 @@ const { associate } = require('./pet');
 module.exports = class PetWalk extends Sequelize.Model {
     static init(sequelize) {
         return super.init({
-            whetherToWork: {
-                type: Sequelize.TINYINT,
+            whetherToWalk: {
+                type: Sequelize.STRING(2),
                 allowNull: false,
             },
             walkDate: {
-                type: Sequelize.DATE,
+                type: Sequelize.STRING(20),
                 allowNull: false
             }
         }, {

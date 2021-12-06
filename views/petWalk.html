@@ -11,24 +11,32 @@
 <body>
     {% include "nav.html" %}
 
-    <form action="">
-        <br><br><input type="date" value="xxx" min="yyy" max="zzz">
-        <br><br><a>산책기록</a>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-                O
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-                X
-            </label>
-        </div>
-        <input type="submit" class="login" value="저장" id="sign">
+    <form action="/petwalk/{{petId}}" name="check" method="POST">
+        <input type="date" id="date" name="setDate" max = {{max}} required/>
+        <br><br><a>산책기록</a><br><br>
+        <input type="checkbox" name="walk" value="O" id="true" onclick='checkOnlyOne(this)'> O <br><br>
+        <input type="checkbox" name="walk" value="X" id="false" onclick='checkOnlyOne(this)'> X <br><br>
+        <input type="submit" class="login" value="기록하기" id="sign">
     </form>
 
 </body>
+
+<script>
+    document.getElementById('date').value = new Date().toISOString().substring(0, 10);
+    console.log(document.querySelector("#date").value);
+
+
+    function checkOnlyOne(element) {
+  
+    const checkboxes 
+        = document.getElementsByName("walk");
+    
+    checkboxes.forEach((cb) => {
+        cb.checked = false;
+    })
+    
+    element.checked = true;
+    }
+</script>
 
 </html>

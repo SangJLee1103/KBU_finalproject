@@ -8,23 +8,29 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 
+
 <body>
     {% include "nav.html" %}
 
     {% for pet in pet %}
-    {{pet | length/3}}
-
-    <div class="petData" style="float: left; margin-left: 3cm; margin-top: 2cm;" > 
-        <h4 style="margin-left: 2cm;">{{pet.petName}}</h4><br>
-        <a href="http://localhost:5000/petmedicine/{{pet.id}}" style="margin-left: 2cm;">약 기록</a>
-        <a href="http://localhost:5000/petwalk/{{pet.id}}" style="float: left;">산책 기록</a><br><br>
-        <!-- <h6>{{loop.index}}</h6> -->
-        {% for thing in pet.PetMedicines %}
-        <h6>{{thing}}</h6>
+    <div class="petData" style=" margin:0 auto; float: left; margin-left: 5cm; margin-top: 2cm;" > 
+        <div>
+        <a href= "http://localhost:5000/pet/petinfo/{{pet.id}}" style="margin-left: 1cm; font-size: 1cm; ">{{pet.petName}}</a><br>
+        </div>
+        <div>
+        <a href="http://localhost:5000/petmedicine/{{pet.id}}" >약 기록하기</a><br>
+        {% for medicine in pet.PetMedicines %}
+            {{medicine.medicineDate}} : {{medicine.medicineName}} <br>
         {% endfor %}
+        </div>
+        <div>
+        <a href="http://localhost:5000/petwalk/{{pet.id}}" >산책 기록하기</a><br>
+        {% for walk in pet.PetWalks %}
+            {{walk.walkDate}} : {{walk.whetherToWalk}}<br>
+        {% endfor %}
+        </div>
     </div>
     {% endfor %}
-
 </body>
 
 </html>

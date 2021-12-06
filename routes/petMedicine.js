@@ -11,13 +11,16 @@ const router = express.Router();
 //회원가입
 router.route('/:petId')
     .get(isLoggedIn, async(req, res, next) => {
-        var date = new Date();
+        
+        //어제 날짜 이후만을 선택할 수 있도록 하기 위해 사용
+        var date = new Date(); 
         var year = date.getFullYear();
         var month = ("0" + (1 + date.getMonth())).slice(-2);
         var day = ("0" + date.getDate()).slice(-2);
         var min = year + "-" + month + "-" + day;
+
         try {
-            const pet = await Pet.findOne({where: {id: parseInt(req.params.petId)}});
+            const pet = await Pet.findOne({where: {id: req.params.petId}});
             res.locals.min = min
             res.locals.isAuthenticated = isLoggedIn;
             res.locals.petId = pet.id;
@@ -29,7 +32,7 @@ router.route('/:petId')
     })
     .post( async(req, res, next) => {
         try{
-            const pet = await Pet.findOne({where: {id: parseInt(req.params.petId)}}); //petId 조회 용도
+            const pet = await Pet.findOne({where: {id: req.params.petId}}); //petId 조회 용도
             const petId = pet.id;
             const medicineData = await PetMedicine.findOne({ where: { petId: petId, medicineName: req.body.medicineName, medicineDate: req.body.setDate }});
 
