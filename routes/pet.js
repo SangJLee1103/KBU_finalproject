@@ -46,7 +46,7 @@ router.route('/enrollment')
 router.route('/petinfo/:id')
     .get(isLoggedIn, async (req, res, next) => {
         console.log(req.params);
-        const pet = await Pet.findOne({ where: {id: parseInt(req.params.id)}}); //수정하기 위한 반려동물 조회
+        const pet = await Pet.findOne({ where: {id: req.params.id}}); //수정하기 위한 반려동물 조회
         try{
             res.locals.pet = pet;
             res.locals.isAuthenticated = isLoggedIn;

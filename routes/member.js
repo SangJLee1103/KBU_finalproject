@@ -63,7 +63,7 @@ router.route('/login')
                 req.login(user, loginError => res.redirect('/'));
                 res.locals.isAuthenticated = isLoggedIn;
             }
-            else res.send("로그인 실패");
+            else res.send(`${info.message}`);
         })(req, res, next);
     });
 
@@ -92,6 +92,7 @@ router.route('/mypage')
             next(err);
         }
     })
+    
     .post ( async (req, res, next) => {
         console.log(req.body);
         try {

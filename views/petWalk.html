@@ -14,8 +14,8 @@
     <form action="/petwalk/{{petId}}" name="check" method="POST">
         <input type="date" id="date" name="setDate" max = {{max}} required/>
         <br><br><a>산책기록</a><br><br>
-        <input type="checkbox" name="walk" value="O" id="true" onclick='checkOnlyOne(this)'> O <br><br>
-        <input type="checkbox" name="walk" value="X" id="false" onclick='checkOnlyOne(this)'> X <br><br>
+        <input type="checkbox" name="whetherToWalk" value="O" id="true" onclick='checkOnlyOne(this)'> O <br><br>
+        <input type="checkbox" name="whetherToWalk" value="X" id="false" onclick='checkOnlyOne(this)'> X <br><br>
         <input type="submit" class="login" value="기록하기" id="sign">
     </form>
 
@@ -29,7 +29,7 @@
     function checkOnlyOne(element) {
   
     const checkboxes 
-        = document.getElementsByName("walk");
+        = document.getElementsByName("whetherToWalk");
     
     checkboxes.forEach((cb) => {
         cb.checked = false;
