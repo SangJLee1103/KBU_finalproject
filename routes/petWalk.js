@@ -6,16 +6,16 @@ const { isLoggedIn, isNotLoggedIn } = require('./checklogin');
 
 const router = express.Router();
 
-//회원가입
+//pet 산책 등록 
 router.route('/:petId')
     .get(isLoggedIn, async (req, res, next) => {
-        
+        //날짜를 yyyy-mm-dd로 format
         var date = new Date(); 
         var year = date.getFullYear();
         var month = ("0" + (1 + date.getMonth())).slice(-2);
         var day = ("0" + date.getDate()).slice(-2);
         var max = year + "-" + month + "-" + day;
-        
+
         try {
             const pet = await Pet.findOne({where: {id: req.params.petId}});
             res.locals.max = max;
@@ -41,7 +41,7 @@ router.route('/:petId')
             }
 
             await PetWalk.create({
-                whetherToWalk: req.body.walk,
+                whetherToWalk: req.body.whetherToWalk,
                 walkDate: req.body.setDate,
                 petId: pet.id,
             });
